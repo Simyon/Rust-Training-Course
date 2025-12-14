@@ -66,13 +66,9 @@ pub struct Company {
 
 impl Company {
     pub fn new(name: String, date_of_origin: u32, annual_income: u64) -> Self {
-        Company {
-            name,
-            date_of_origin,
-            annual_income,
-        }
+        Company { name, date_of_origin, annual_income }
     }
-    
+
     pub fn total_income(&self, current_year: u32) -> u64 {
         let years_in_business = current_year - self.date_of_origin;
         self.annual_income * years_in_business as u64
@@ -98,11 +94,11 @@ impl BankAccount {
     pub fn new(owner: String, balance: u64) -> Self {
         BankAccount { owner, balance }
     }
-    
+
     pub fn deposit(&mut self, amount: u64) {
         self.balance += amount;
     }
-    
+
     pub fn withdraw(&mut self, amount: u64) -> bool {
         if self.balance >= amount {
             self.balance -= amount;
@@ -111,7 +107,7 @@ impl BankAccount {
             false
         }
     }
-    
+
     pub fn balance(&self) -> u64 {
         self.balance
     }
@@ -166,7 +162,7 @@ impl Operation {
                 } else {
                     Some(a / b)
                 }
-            }
+            },
         }
     }
 }
@@ -212,12 +208,12 @@ impl WeirdLengthMeasures {
 // - Otherwise the number itself.
 
 pub fn fizzbuzz(n: u32) -> Vec<String> {
-    (1..=n).map(|i| {
-        match (i % 2, i % 3) {
+    (1..=n)
+        .map(|i| match (i % 2, i % 3) {
             (0, 0) => "FizzBuzz".to_string(),
             (0, _) => "Fizz".to_string(),
             (_, 0) => "Buzz".to_string(),
             _ => i.to_string(),
-        }
-    }).collect()
+        })
+        .collect()
 }

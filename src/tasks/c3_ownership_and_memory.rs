@@ -62,7 +62,7 @@ pub fn append_and_return_length(string: &mut String, suffix: &str) -> usize {
 pub fn hard_borrowing() {
     let mut my_string = String::from("Привет");
     let len1 = append_and_return_length(&mut my_string, ", мир");
-    println!("После первого добавления: '{}', длина: {}", my_string, len1);    
+    println!("После первого добавления: '{}', длина: {}", my_string, len1);
     let len2 = append_and_return_length(&mut my_string, "!");
     println!("После второго добавления: '{}', длина: {}", my_string, len2);
     println!("Финальная строка: {}", my_string);
@@ -76,18 +76,12 @@ pub fn hard_borrowing() {
 // Assume words are separated by spaces.
 pub fn last_word(slice: &str) -> &str {
     // Убираем пробелы с концов и разбиваем по пробелам, потом берём последнее слово и если строка пустая, возвращаем пустую строку
-    slice.trim()
-        .split_whitespace()
-        .last()  
-        .unwrap_or("")   
+    slice.split_whitespace().last().unwrap_or("")
 }
 
 // ----- 5 --------------------------------------
 // Write a function longest_word(sentence: &str) -> &str that returns the longest word in a
 // sentence (string slice). If several words have the same maximum length, return the last one.
 pub fn longest_word(sentence: &str) -> &str {
-    sentence
-        .split_whitespace()
-        .max_by_key(|word| word.len())
-        .unwrap_or("")
+    sentence.split_whitespace().max_by_key(|word| word.len()).unwrap_or("")
 }

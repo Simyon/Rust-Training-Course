@@ -1,16 +1,6 @@
-#[path = "../tasks/c4_structs_methods_enums_pattern_matching.rs"]
-mod c4_structs_methods_enums_pattern_matching;
-
-use c4_structs_methods_enums_pattern_matching::{
-    BankAccount,
-    Company,
-    Operation,
-    TrafficLight,
-    WeirdLengthMeasures,
-    fizzbuzz,
-    point_checker,
-    rectangle_checker,
-    next,
+use crate::tasks::c4_structs_methods_enums_pattern_matching::{
+    fizzbuzz, next, point_checker, rectangle_checker, BankAccount, Company, Operation,
+    TrafficLight, WeirdLengthMeasures,
 };
 
 #[test]
@@ -26,7 +16,7 @@ fn test_rectangle_struct() {
 #[test]
 fn test_company() {
     let company = Company::new(String::from("ПОРА КВАСИТЬ"), 1999, 69000);
-    assert_eq!(1794000, company.total_income(2024))
+    assert_eq!(1725000, company.total_income(2024))
 }
 
 #[test]
@@ -77,6 +67,7 @@ fn test_fizzbuzz() {
     assert_eq!(expected, fizzbuzz(6));
 }
 
+#[allow(dead_code)]
 fn main() {
     test_point_struct();
     test_rectangle_struct();

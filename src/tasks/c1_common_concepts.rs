@@ -24,10 +24,10 @@ pub fn simple_mutability() {
 #[allow(dead_code)]
 pub fn simple_data_types() {
     let integer: i32 = 42;
-    let float: f64 = 3.14;
+    let float: f64 = std::f64::consts::PI;
     let boolean: bool = true;
     let character: char = 'R';
-    
+
     println!("i32: {}", integer);
     println!("f64: {}", float);
     println!("bool: {}", boolean);
@@ -62,12 +62,10 @@ pub fn factorial(n: u32) -> u32 {
 // Write a program that prints whether a provided signed integer number is positive, negative, or
 // zero using `if` statement.
 pub fn sign_checker(number: i32) -> &'static str {
-    if number > 0 {
-        "положительное"
-    } else if number < 0 {
-        "отрицательное"
-    } else {
-        "ноль"
+    match number.cmp(&0) {
+        std::cmp::Ordering::Greater => "positive",
+        std::cmp::Ordering::Less => "negative",
+        std::cmp::Ordering::Equal => "zero",
     }
 }
 

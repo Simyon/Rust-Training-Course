@@ -14,7 +14,7 @@ TASKS_TO_ANALYZE += c3_ownership_and_memory
 # ---------------------
 TASKS_TO_ANALYZE += c4_structs_methods_enums_pattern_matching
 # ---------------------
-# TASKS_TO_ANALYZE += c5_collections
+TASKS_TO_ANALYZE += c5_collections
 # ---------------------
 # TASKS_TO_ANALYZE += c6_error_handling_tests_docs
 # ---------------------
@@ -47,11 +47,13 @@ fix: check_empty ## Runs Fix with configs
 
 .PHONY: format
 format: check_empty ## Runs Format using nightly toolchain
-	@which rustfmt > /dev/null 2>&1 && rustfmt --edition 2021 tasks/*.rs tests/*.rs src/*.rs || echo "rustfmt not found, skipping formatting"
+	@which rustfmt > /dev/null 2>&1 && rustfmt --edition 2021 src/tasks/*.rs src/tests/*.rs src/*.rs || echo "rustfmt not found, skipping formatting"
 
 .PHONY: lint
 lint: check_empty ## Runs all linting tasks at once (Clippy, fixing, formatting, typos)
+	$(MAKE) format
 	$(MAKE) fix
+	$(MAKE) clippy
 
 .PHONY: test
 test: check_empty ## Runs tests
@@ -60,15 +62,8 @@ test: check_empty ## Runs tests
 .PHONY: all
 all: lint test ## Runs lint + test
 
-.PHONY: demo
-demo: ## Runs simple demos without cargo
-	@echo "Running chapter demos..."
-	@rustc --edition 2021 -A dead_code -o c1_demo src/tests/c1.rs && ./c1_demo || echo "c1 demo failed"
-	@rustc --edition 2021 -A dead_code -o c3_demo src/tests/c3.rs && ./c3_demo || echo "c3 demo failed"
-	@rustc --edition 2021 -A dead_code -o c4_demo src/tests/c4.rs && ./c4_demo || echo "c4 demo failed"
-
 .PHONY: clean
 clean: ## Cleans build artifacts
 	@which cargo > /dev/null 2>&1 && cargo clean || echo "cargo not found, skipping cargo clean"
-	rm -f c1_demo c3_demo c4_demo test_utf8
+	rm -f c1_demo c3_demo c4_demo c5_demo test_utf8
 	rm -f *.rlib

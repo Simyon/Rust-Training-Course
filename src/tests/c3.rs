@@ -1,7 +1,4 @@
-#[path = "../tasks/c3_ownership_and_memory.rs"]
-mod c3_ownership_and_memory;
-
-use c3_ownership_and_memory::{last_word, longest_word};
+use crate::tasks::c3_ownership_and_memory::{last_word, longest_word};
 
 #[test]
 fn test_last_word() {
@@ -18,6 +15,7 @@ fn test_longest_word() {
     assert_eq!("gonna", longest_word("Never gonna give you up Never gonna let you down"));
 }
 
+#[allow(dead_code)]
 fn main() {
     test_last_word();
     test_longest_word();
