@@ -8,3 +8,5 @@ pub mod c4_structs_methods_enums_pattern_matching;
 pub mod c5_collections;
 #[cfg(feature = "c6_error_handling_tests_docs")]
 pub mod c6_error_handling_tests_docs;
+#[cfg(feature = "c7_generics_traits_lifetimes")]
+pub mod c7_generics_traits_lifetimes;

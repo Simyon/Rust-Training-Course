@@ -8,3 +8,5 @@ pub mod c4;
 pub mod c5;
 #[cfg(feature = "c6_error_handling_tests_docs")]
 pub mod c6;
+#[cfg(feature = "c7_generics_traits_lifetimes")]
+pub mod c7;

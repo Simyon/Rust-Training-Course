@@ -18,7 +18,7 @@ TASKS_TO_ANALYZE += c5_collections
 # ---------------------
 TASKS_TO_ANALYZE += c6_error_handling_tests_docs
 # ---------------------
-# TASKS_TO_ANALYZE += c7_generics_traits_lifetimes
+TASKS_TO_ANALYZE += c7_generics_traits_lifetimes
 # ---------------------
 # TASKS_TO_ANALYZE += c8_iterators_and_closures
 # ---------------------
@@ -65,5 +65,5 @@ all: lint test ## Runs lint + test
 .PHONY: clean
 clean: ## Cleans build artifacts
 	@which cargo > /dev/null 2>&1 && cargo clean || echo "cargo not found, skipping cargo clean"
-	rm -f c1_demo c3_demo c4_demo c5_demo test_utf8
+	rm -f c1_demo c3_demo c4_demo c5_demo c6_demo c7_demo test_utf8
 	rm -f *.rlib
