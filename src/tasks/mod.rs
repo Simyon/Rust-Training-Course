@@ -10,3 +10,5 @@ pub mod c5_collections;
 pub mod c6_error_handling_tests_docs;
 #[cfg(feature = "c7_generics_traits_lifetimes")]
 pub mod c7_generics_traits_lifetimes;
+#[cfg(feature = "c8_iterators_and_closures")]
+pub mod c8_iterators_and_closures;
