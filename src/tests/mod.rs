@@ -12,3 +12,5 @@ pub mod c6;
 pub mod c7;
 #[cfg(feature = "c8_iterators_and_closures")]
 pub mod c8;
+#[cfg(feature = "c9_smart_pointers")]
+pub mod c9;
