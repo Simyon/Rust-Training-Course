@@ -2,6 +2,8 @@
 pub mod c1;
 #[cfg(feature = "c10_concurrency")]
 pub mod c10;
+#[cfg(feature = "c12_object_oriented_programming")]
+pub mod c12;
 #[cfg(feature = "c3_ownership_and_memory")]
 pub mod c3;
 #[cfg(feature = "c4_structs_methods_enums_pattern_matching")]
