@@ -68,6 +68,7 @@ pub fn factorial(u32_int: u32) -> u32 {
 // Write a program that prints whether a provided signed integer number is positive, negative, or
 // zero using `if` statement.
 #[allow(dead_code)]
+#[allow(clippy::comparison_chain)] // According to task I have to using 'if' statement
 pub fn sign_checker(number: i32) -> &'static str {
     if number > 0 {
         "positive"
@@ -81,6 +82,7 @@ pub fn sign_checker(number: i32) -> &'static str {
 // ----- 6 --------------------------------------
 // Write a program that finds the largest number in an array of 5 integers using a for or while
 // loop.
+#[allow(clippy::needless_range_loop)] // I suppose that I don't know iterators at first task
 pub fn find_biggest_number(some_array: [u32; 5]) -> u32 {
     let mut max_number = some_array[0];
     for i in 1..5 {
