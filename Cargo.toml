@@ -1,0 +1,33 @@
+[package]
+name = "rust_learning_course"
+version = "0.1.0"
+authors = ["Семён Красоткин krasotkin.sa@phystech.edu"]
+edition = "2021"
+license = "CC0"
+
+[dependencies]
+
+[features]
+c10_concurrency = []
+c12_object_oriented_programming = []
+c1_common_concepts = []
+c3_ownership_and_memory = []
+c4_structs_methods_enums_pattern_matching = []
+c5_collections = []
+c6_error_handling_tests_docs = []
+c7_generics_traits_lifetimes = []
+c8_iterators_and_closures = []
+c9_smart_pointers = []
+
+default = [
+    "c10_concurrency",
+    "c12_object_oriented_programming",
+    "c1_common_concepts",
+    "c3_ownership_and_memory",
+    "c4_structs_methods_enums_pattern_matching",
+    "c5_collections",
+    "c6_error_handling_tests_docs",
+    "c7_generics_traits_lifetimes",
+    "c8_iterators_and_closures",
+    "c9_smart_pointers",
+]
