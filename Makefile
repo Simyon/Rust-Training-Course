@@ -66,3 +66,4 @@ all: lint test ## Runs lint + test
 clean: ## Cleans build artifacts
 	@which cargo > /dev/null 2>&1 && cargo clean || echo "cargo not found, skipping cargo clean"
 	rm -f *.rlib
+	rm -rf *.txt

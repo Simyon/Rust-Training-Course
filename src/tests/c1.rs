@@ -1,9 +1,22 @@
+use crate::tasks::c1_common_concepts::{
+    factorial, find_biggest_number, sign_checker, simple_data_types, simple_mutability, square,
+};
+
 #[test]
-fn clear_test() {
+fn test_clear() {
     assert_eq!(4, 2 + 2);
 }
 
-/*
+#[test]
+fn test_simple_mutability() {
+    simple_mutability();
+}
+
+#[test]
+fn test_simple_data_types() {
+    simple_data_types();
+}
+
 #[test]
 fn test_square() {
     assert_eq!(4, square(2));
@@ -30,4 +43,3 @@ fn test_find_biggest_number() {
     assert_eq!(5, find_biggest_number([5, 4, 3, 2, 1]));
     assert_eq!(9, find_biggest_number([5, 6, 7, 8, 9]));
 }
-*/

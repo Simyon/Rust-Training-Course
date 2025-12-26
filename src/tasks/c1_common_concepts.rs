@@ -9,7 +9,10 @@
 // it to 10, and prints both values.
 #[allow(dead_code)]
 pub fn simple_mutability() {
-    unimplemented!()
+    let mut number = 5;
+    println!("The number is: {}", number);
+    number = 10;
+    println!("The number is: {}", number);
 }
 
 // DATA TYPES
@@ -20,7 +23,16 @@ pub fn simple_mutability() {
 // them.
 #[allow(dead_code)]
 pub fn simple_data_types() {
-    unimplemented!()
+    //Does the Rust really don't have onliner declaration?
+    let i32_int: i32 = 5;
+    let f64_float: f64 = 3.14159265357;
+    let bool_bool: bool = false;
+    let char_char: char = '@';
+
+    println!(
+        "The i32 number is: {},\t f64 number is: {},\t bool is: {},\t char is: {}",
+        i32_int, f64_float, bool_bool, char_char
+    );
 }
 
 // FUNCTIONS
@@ -32,7 +44,7 @@ pub fn simple_data_types() {
 // IMPLEMENT HERE:
 #[allow(dead_code)]
 pub fn square(u32_int: u32) -> u32 {
-    unimplemented!()
+    u32_int * u32_int
 }
 
 // ----- 4 --------------------------------------
@@ -41,7 +53,12 @@ pub fn square(u32_int: u32) -> u32 {
 // IMPLEMENT HERE:
 #[allow(dead_code)]
 pub fn factorial(u32_int: u32) -> u32 {
-    unimplemented!()
+    // No ternary operator in Rust :(
+    if u32_int == 0 {
+        1
+    } else {
+        u32_int * factorial(u32_int - 1)
+    }
 }
 
 // CONTROL FLOW
@@ -52,12 +69,24 @@ pub fn factorial(u32_int: u32) -> u32 {
 // zero using `if` statement.
 #[allow(dead_code)]
 pub fn sign_checker(number: i32) -> &'static str {
-    unimplemented!()
+    if number > 0 {
+        "positive"
+    } else if number < 0 {
+        "negative"
+    } else {
+        "zero"
+    }
 }
 
 // ----- 6 --------------------------------------
 // Write a program that finds the largest number in an array of 5 integers using a for or while
 // loop.
 pub fn find_biggest_number(some_array: [u32; 5]) -> u32 {
-    unimplemented!()
+    let mut max_number = some_array[0];
+    for i in 1..5 {
+        if some_array[i] > max_number {
+            max_number = some_array[i];
+        }
+    }
+    max_number
 }
