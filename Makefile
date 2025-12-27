@@ -10,7 +10,7 @@ TASKS_TO_ANALYZE =
 # ---------------------
 TASKS_TO_ANALYZE += c1_common_concepts
 # ---------------------
-#TASKS_TO_ANALYZE += c3_ownership_and_memory
+TASKS_TO_ANALYZE += c3_ownership_and_memory
 # ---------------------
 #TASKS_TO_ANALYZE += c4_structs_methods_enums_pattern_matching
 # ---------------------
