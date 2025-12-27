@@ -30,7 +30,7 @@ TASKS_TO_ANALYZE += c3_ownership_and_memory
 # ---------------------
 
 # Clippy generates a lot of irritating errors at the start
-# Usage make ... skip=clippy or skip="clippy, fix" ...
+# Usage make ... skip=clippy or skip="clippy fix" ...
 SKIP ?= 
 should_skip = $(if $(filter $(1),$(SKIP)),skip,run)
 

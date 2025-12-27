@@ -1,3 +1,17 @@
+use crate::tasks::c3_ownership_and_memory::{longest_owned, string_ownership};
+
+#[test]
+fn test_longest_owned() {
+    assert_eq!("🙄🙏🏼😶‍🌫️".to_string(), longest_owned("🙄🙏🏼😶‍🌫️".to_string(), "😳🫣🌫🫥".to_string()));
+    assert_eq!("Arbeit macht frei!".to_string(), longest_owned("Arbeit macht frei!".to_string(), "Arbeit macht frei".to_string()));
+    assert_eq!("ab0ba".to_string(), longest_owned("aboba".to_string(), "ab0ba".to_string()));
+}
+
+#[test]
+fn test_string_ownership() {
+    string_ownership();
+}
+
 /*
 #[test]
 fn test_last_word() {

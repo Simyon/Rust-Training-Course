@@ -9,9 +9,22 @@
 // can still be used.
 //
 // You can implement the function and use it right inside the `string_ownership` function.
+pub fn longest_owned(s1: String, s2: String) -> String {
+    if s1.len() > s2.len() {
+        s1
+    } else {
+        s2
+    }
+}
+
 #[allow(dead_code)]
 pub fn string_ownership() {
-    !unimplemented!()
+    let a = String::from("a");
+    let b = String::from("b");
+    let c = longest_owned(a, b);
+
+    //println!("The previous strings: {}, {} are moved into the function, so they are no longer valid here. Uncomment'll invoke compilation error", a, b);
+    println!("The longest string is {}", c);
 }
 
 // BORROWING
