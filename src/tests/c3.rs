@@ -1,5 +1,7 @@
-use crate::tasks::c3_ownership_and_memory::{longest_owned, string_ownership, print_length, simple_borrowing, append_and_return_length, hard_borrowing, 
-    last_word, longest_word};
+use crate::tasks::c3_ownership_and_memory::{
+    append_and_return_length, hard_borrowing, last_word, longest_owned, longest_word, print_length,
+    simple_borrowing, string_ownership,
+};
 
 #[test]
 fn test_longest_owned() {

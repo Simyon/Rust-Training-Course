@@ -36,13 +36,14 @@ pub fn string_ownership() {
 // show that it was not moved and still available.
 //
 // You can implement the function and use it right inside the `simple_borrowing` function.
-pub fn print_length(s: &String){
+#[allow(clippy::ptr_arg)] // avoid clippy error writing `&String` instead of `&str` involves a new object where a slice will do
+pub fn print_length(s: &String) {
     println!("The length of the string is {}", s.len());
 }
 
 #[allow(dead_code)]
 pub fn simple_borrowing() {
-    let s : String = "count me ~nipa".to_string();
+    let s: String = "count me ~nipa".to_string();
     print_length(&s);
     println!("The string is still here: {}", s);
 }
@@ -61,9 +62,18 @@ pub fn append_and_return_length(string: &mut String, suffix: &str) -> usize {
 #[allow(dead_code)]
 pub fn hard_borrowing() {
     let mut base_string = String::from("4el");
-    println!("The length of the string is {}", append_and_return_length(&mut base_string, " ty"));
-    println!("The length of the string is {}", append_and_return_length(&mut base_string, " w"));
-    println!("The length of the string is {}", append_and_return_length(&mut base_string, " mute."));
+    println!(
+        "The length of the string is {}",
+        append_and_return_length(&mut base_string, " ty")
+    );
+    println!(
+        "The length of the string is {}",
+        append_and_return_length(&mut base_string, " w")
+    );
+    println!(
+        "The length of the string is {}",
+        append_and_return_length(&mut base_string, " mute.")
+    );
 }
 
 // SLICES
@@ -74,13 +84,13 @@ pub fn hard_borrowing() {
 // Assume words are separated by spaces.
 pub fn last_word(slice: &str) -> &str {
     //println!("slice: {}", slice);
-    if slice.len() == 0 {
+    if slice.is_empty() {
         return "";
     }
     let mut index = 0;
     let mut space_index = 0;
-    let mut unspace_index : usize = 0;
-    'outter_loop: loop {
+    let mut unspace_index: usize = 0;
+    loop {
         //println!("index: {}\tspace_index: {}\tunspace_index: {}", index, space_index, unspace_index);
         if slice.as_bytes()[index] == b' ' {
             space_index = index;
@@ -110,16 +120,16 @@ pub fn last_word(slice: &str) -> &str {
 // sentence (string slice). If several words have the same maximum length, return the last one.
 pub fn longest_word(sentence: &str) -> &str {
     //println!("sentence: {}", sentence);
-    if sentence.len() == 0 {
+    if sentence.is_empty() {
         return "";
     }
     let mut index = 0;
     let mut space_index = 0;
-    let mut unspace_index : usize = 0;
-    let mut max_length = 0; 
+    let mut unspace_index: usize = 0;
+    let mut max_length = 0;
     let mut start_max_word_index = 0;
     let mut end_max_word_index = 0;
-    'outter_loop: loop {
+    loop {
         //println!("index: {}\tspace_index: {}\tunspace_index: {}", index, space_index, unspace_index);
         if sentence.as_bytes()[index] == b' ' {
             space_index = index;
@@ -134,7 +144,7 @@ pub fn longest_word(sentence: &str) -> &str {
                         space_index -= 1;
                     } else {
                         break 'inner_loop;
-                    }                    
+                    }
                 }
                 let length = unspace_index - space_index + 1;
                 if length >= max_length {
@@ -151,7 +161,7 @@ pub fn longest_word(sentence: &str) -> &str {
         } else {
             unspace_index = index;
         }
-        index += 1; 
+        index += 1;
         if index == sentence.len() {
             //println!("Last index: {}\tspace_index: {}\tunspace_index: {}", index, space_index, unspace_index);
             if space_index > unspace_index {
@@ -167,7 +177,6 @@ pub fn longest_word(sentence: &str) -> &str {
             let length = unspace_index - space_index + 1;
             //println!("length: {}\tmax_length: {}", length, max_length);
             if length >= max_length {
-                max_length = length;
                 start_max_word_index = space_index + 1;
                 end_max_word_index = unspace_index + 1;
             }
