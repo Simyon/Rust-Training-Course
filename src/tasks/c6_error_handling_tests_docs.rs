@@ -8,7 +8,10 @@
 // character of a string or an error message "Empty string" if the string is empty.
 
 pub fn first_char(text: &str) -> Result<char, String> {
-    text.chars().next().ok_or_else(|| "Empty string".to_string())
+    match text.chars().next() {
+        Some(c) => Ok(c),
+        None => Err("Empty string".to_string()),
+    }
 }
 
 // ----- 2 --------------------------------------
@@ -47,7 +50,7 @@ impl UserProfile {
     pub fn get_email_domain(&self) -> Option<String> {
         self.email
             .as_ref()
-            .and_then(|email| email.split('@').nth(1).map(|domain| domain.to_string()))
+            .and_then(|email| email.rsplit('@').next().map(|domain| domain.to_string()))
     }
 }
 
@@ -147,6 +150,17 @@ mod prime_tests {
 // - Additionally white the usage example for the `TemperatureLog` in the high-level docs.
 // - For the `average` method additionally write an example of its usage.
 
+/// Лог температур по дням для одного города.
+///
+/// # Пример
+/// ```
+/// use crate::TemperatureLog;
+///
+/// let mut log = TemperatureLog::new("Moscow");
+/// log.add_reading(-10.5);
+/// log.add_reading(-11.5);
+/// assert_eq!(log.average(), Some(-11.0));
+/// ```
 #[allow(dead_code)]
 pub struct TemperatureLog {
     /// Название города, для которого регистрируются температуры.
@@ -155,7 +169,6 @@ pub struct TemperatureLog {
     pub readings: Vec<f64>,
 }
 
-#[allow(dead_code)]
 #[allow(dead_code)]
 impl TemperatureLog {
     /// Создает новый `TemperatureLog` для указанного города.

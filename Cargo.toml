@@ -1,7 +1,9 @@
 [package]
 name = "rust_learning_course"
 version = "0.1.0"
+authors = ["Семён Красоткин krasotkin.sa@phystech.edu"]
 edition = "2021"
+license = "CC0"
 
 [dependencies]
 
