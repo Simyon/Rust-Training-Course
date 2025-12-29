@@ -10,25 +10,19 @@ use std::collections::{HashMap, HashSet};
 // element in the array. If the array has fewer than 2 elements, return `None`.
 
 pub fn second_largest(vec: &[i32]) -> Option<i32> {
-    let mut largest: Option<i32> = None;
-    let mut second: Option<i32> = None;
-
-    for &x in vec {
-        match largest {
-            None => largest = Some(x),
-            Some(l) if x > l => {
-                second = largest;
-                largest = Some(x);
-            },
-            Some(l) if x < l => {
-                if second.map_or(true, |s| x > s) {
-                    second = Some(x);
-                }
-            },
-            _ => {},
-        }
+    if vec.len() < 2 {
+        return None;
     }
-    second
+
+    let mut sorted_vec = vec.to_vec();
+    sorted_vec.sort();
+    sorted_vec.dedup();
+
+    if sorted_vec.len() < 2 {
+        return None;
+    }
+
+    Some(*sorted_vec.get(sorted_vec.len() - 2)?)
 }
 
 // ----- 2 --------------------------------------

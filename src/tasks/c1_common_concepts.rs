@@ -9,10 +9,10 @@
 // it to 10, and prints both values.
 #[allow(dead_code)]
 pub fn simple_mutability() {
-    let mut number = 5;
-    println!("The number is: {}", number);
-    number = 10;
-    println!("The number is: {}", number);
+    let mut x = 5;
+    println!("Первое значение: {}", x);
+    x = 10;
+    println!("Второе значение: {}", x);
 }
 
 // DATA TYPES
@@ -23,16 +23,15 @@ pub fn simple_mutability() {
 // them.
 #[allow(dead_code)]
 pub fn simple_data_types() {
-    //Does the Rust really don't have onliner declaration?
-    let i32_int: i32 = 5;
-    let f64_float: f64 = 3.14159265357;
-    let bool_bool: bool = false;
-    let char_char: char = '@';
+    let integer: i32 = 42;
+    let float: f64 = std::f64::consts::PI;
+    let boolean: bool = true;
+    let character: char = 'R';
 
-    println!(
-        "The i32 number is: {},\t f64 number is: {},\t bool is: {},\t char is: {}",
-        i32_int, f64_float, bool_bool, char_char
-    );
+    println!("i32: {}", integer);
+    println!("f64: {}", float);
+    println!("bool: {}", boolean);
+    println!("char: {}", character);
 }
 
 // FUNCTIONS
@@ -41,23 +40,18 @@ pub fn simple_data_types() {
 // ----- 3 --------------------------------------
 // Write a function `square` that takes a `u32` integer and returns its square as `u32`.
 
-// IMPLEMENT HERE:
-#[allow(dead_code)]
-pub fn square(u32_int: u32) -> u32 {
-    u32_int * u32_int
+pub fn square(n: u32) -> u32 {
+    n * n
 }
 
 // ----- 4 --------------------------------------
 // Write a recursive function `factorial` that computes the factorial of a number (n!) as `u32`.
 
-// IMPLEMENT HERE:
-#[allow(dead_code)]
-pub fn factorial(u32_int: u32) -> u32 {
-    // No ternary operator in Rust :(
-    if u32_int == 0 {
+pub fn factorial(n: u32) -> u32 {
+    if n <= 1 {
         1
     } else {
-        u32_int * factorial(u32_int - 1)
+        n * factorial(n - 1)
     }
 }
 
@@ -67,28 +61,23 @@ pub fn factorial(u32_int: u32) -> u32 {
 // ----- 5 --------------------------------------
 // Write a program that prints whether a provided signed integer number is positive, negative, or
 // zero using `if` statement.
-#[allow(dead_code)]
-#[allow(clippy::comparison_chain)] // According to task I have to using 'if' statement
 pub fn sign_checker(number: i32) -> &'static str {
-    if number > 0 {
-        "positive"
-    } else if number < 0 {
-        "negative"
-    } else {
-        "zero"
+    match number.cmp(&0) {
+        std::cmp::Ordering::Greater => "positive",
+        std::cmp::Ordering::Less => "negative",
+        std::cmp::Ordering::Equal => "zero",
     }
 }
 
 // ----- 6 --------------------------------------
 // Write a program that finds the largest number in an array of 5 integers using a for or while
 // loop.
-#[allow(clippy::needless_range_loop)] // I suppose that I don't know iterators at first task
 pub fn find_biggest_number(some_array: [u32; 5]) -> u32 {
-    let mut max_number = some_array[0];
-    for i in 1..5 {
-        if some_array[i] > max_number {
-            max_number = some_array[i];
+    let mut max = some_array[0];
+    for &num in &some_array {
+        if num > max {
+            max = num;
         }
     }
-    max_number
+    max
 }

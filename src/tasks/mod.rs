@@ -6,3 +6,5 @@ pub mod c3_ownership_and_memory;
 pub mod c4_structs_methods_enums_pattern_matching;
 #[cfg(feature = "c5_collections")]
 pub mod c5_collections;
+#[cfg(feature = "c6_error_handling_tests_docs")]
+pub mod c6_error_handling_tests_docs;
