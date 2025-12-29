@@ -10,3 +10,5 @@ pub mod c5;
 pub mod c6;
 #[cfg(feature = "c7_generics_traits_lifetimes")]
 pub mod c7;
+#[cfg(feature = "c8_iterators_and_closures")]
+pub mod c8;
