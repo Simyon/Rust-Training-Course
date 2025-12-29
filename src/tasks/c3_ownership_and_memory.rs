@@ -10,7 +10,7 @@
 //
 // You can implement the function and use it right inside the `string_ownership` function.
 pub fn longest_owned(s1: String, s2: String) -> String {
-    if s1.len() >= s2.len() {
+    if s1.len() > s2.len() {
         s1
     } else {
         s2
@@ -19,10 +19,12 @@ pub fn longest_owned(s1: String, s2: String) -> String {
 
 #[allow(dead_code)]
 pub fn string_ownership() {
-    let s1 = String::from("аб0ба");
-    let s2 = String::from("abracadabra");
-    let result = longest_owned(s1, s2);
-    println!("Самая длинная строка: {}", result);
+    let a = String::from("a");
+    let b = String::from("b");
+    let c = longest_owned(a, b);
+
+    //println!("The previous strings: {}, {} are moved into the function, so they are no longer valid here. Uncomment'll invoke compilation error", a, b);
+    println!("The longest string is {}", c);
 }
 
 // BORROWING
@@ -34,16 +36,16 @@ pub fn string_ownership() {
 // show that it was not moved and still available.
 //
 // You can implement the function and use it right inside the `simple_borrowing` function.
-// Функция принимает ссылку на строку (&str), не забирая владение
-pub fn print_length(s: &str) {
-    println!("Длина строки: {}", s.len());
+#[allow(clippy::ptr_arg)] // avoid clippy error writing `&String` instead of `&str` involves a new object where a slice will do
+pub fn print_length(s: &String) {
+    println!("The length of the string is {}", s.len());
 }
 
 #[allow(dead_code)]
 pub fn simple_borrowing() {
-    let my_string = String::from("секретная строка");
-    print_length(&my_string);
-    println!("Строка все еще доступна: {}", my_string);
+    let s: String = "count me ~nipa".to_string();
+    print_length(&s);
+    println!("The string is still here: {}", s);
 }
 
 // ----- 3 --------------------------------------
@@ -52,7 +54,6 @@ pub fn simple_borrowing() {
 // to check that the string was borrowed, not moved.
 //
 // You can implement the function and use it right inside the `hard_borrowing` function.
-// Функция принимает изменяемую ссылку на String и неизменяемую ссылку на str
 pub fn append_and_return_length(string: &mut String, suffix: &str) -> usize {
     string.push_str(suffix);
     string.len()
@@ -60,12 +61,19 @@ pub fn append_and_return_length(string: &mut String, suffix: &str) -> usize {
 
 #[allow(dead_code)]
 pub fn hard_borrowing() {
-    let mut my_string = String::from("Привет");
-    let len1 = append_and_return_length(&mut my_string, ", мир");
-    println!("После первого добавления: '{}', длина: {}", my_string, len1);
-    let len2 = append_and_return_length(&mut my_string, "!");
-    println!("После второго добавления: '{}', длина: {}", my_string, len2);
-    println!("Финальная строка: {}", my_string);
+    let mut base_string = String::from("4el");
+    println!(
+        "The length of the string is {}",
+        append_and_return_length(&mut base_string, " ty")
+    );
+    println!(
+        "The length of the string is {}",
+        append_and_return_length(&mut base_string, " w")
+    );
+    println!(
+        "The length of the string is {}",
+        append_and_return_length(&mut base_string, " mute.")
+    );
 }
 
 // SLICES
@@ -75,13 +83,104 @@ pub fn hard_borrowing() {
 // Write a function last_word(s: &str) -> &str that returns the last word from a string slice.
 // Assume words are separated by spaces.
 pub fn last_word(slice: &str) -> &str {
-    // Убираем пробелы с концов и разбиваем по пробелам, потом берём последнее слово и если строка пустая, возвращаем пустую строку
-    slice.split_whitespace().last().unwrap_or("")
+    //println!("slice: {}", slice);
+    if slice.is_empty() {
+        return "";
+    }
+    let mut index = 0;
+    let mut space_index = 0;
+    let mut unspace_index: usize = 0;
+    loop {
+        //println!("index: {}\tspace_index: {}\tunspace_index: {}", index, space_index, unspace_index);
+        if slice.as_bytes()[index] == b' ' {
+            space_index = index;
+        } else {
+            unspace_index = index;
+        }
+        index += 1; // Why Rust has no postfix increment operator;-(
+        if index == slice.len() {
+            //println!("Last index: {}\tspace_index: {}\tunspace_index: {}", index, space_index, unspace_index);
+            if space_index > unspace_index {
+                space_index = unspace_index;
+                'inner_loop: loop {
+                    if slice.as_bytes()[space_index] != b' ' {
+                        space_index -= 1;
+                    } else {
+                        break 'inner_loop;
+                    }
+                }
+            }
+            return &slice[space_index + 1..unspace_index + 1];
+        }
+    }
 }
 
 // ----- 5 --------------------------------------
 // Write a function longest_word(sentence: &str) -> &str that returns the longest word in a
 // sentence (string slice). If several words have the same maximum length, return the last one.
 pub fn longest_word(sentence: &str) -> &str {
-    sentence.split_whitespace().max_by_key(|word| word.len()).unwrap_or("")
+    //println!("sentence: {}", sentence);
+    if sentence.is_empty() {
+        return "";
+    }
+    let mut index = 0;
+    let mut space_index = 0;
+    let mut unspace_index: usize = 0;
+    let mut max_length = 0;
+    let mut start_max_word_index = 0;
+    let mut end_max_word_index = 0;
+    loop {
+        //println!("index: {}\tspace_index: {}\tunspace_index: {}", index, space_index, unspace_index);
+        if sentence.as_bytes()[index] == b' ' {
+            space_index = index;
+            if space_index > unspace_index && space_index - unspace_index == 1 {
+                space_index = unspace_index;
+                'inner_loop: loop {
+                    //println!("In inner_loop space_index: {}\tunspace_index: {}", space_index, unspace_index);
+                    if space_index == 0 {
+                        break 'inner_loop;
+                    }
+                    if sentence.as_bytes()[space_index] != b' ' {
+                        space_index -= 1;
+                    } else {
+                        break 'inner_loop;
+                    }
+                }
+                let length = unspace_index - space_index + 1;
+                if length >= max_length {
+                    max_length = length;
+                    if space_index == 0 {
+                        start_max_word_index = 0;
+                    } else {
+                        start_max_word_index = space_index + 1;
+                    }
+                    end_max_word_index = unspace_index + 1;
+                }
+            }
+            space_index = index;
+        } else {
+            unspace_index = index;
+        }
+        index += 1;
+        if index == sentence.len() {
+            //println!("Last index: {}\tspace_index: {}\tunspace_index: {}", index, space_index, unspace_index);
+            if space_index > unspace_index {
+                space_index = unspace_index;
+                'inner_loop: loop {
+                    if sentence.as_bytes()[space_index] != b' ' {
+                        space_index -= 1;
+                    } else {
+                        break 'inner_loop;
+                    }
+                }
+            }
+            let length = unspace_index - space_index + 1;
+            //println!("length: {}\tmax_length: {}", length, max_length);
+            if length >= max_length {
+                start_max_word_index = space_index + 1;
+                end_max_word_index = unspace_index + 1;
+            }
+            return &sentence[start_max_word_index..end_max_word_index];
+        }
+    }
 }

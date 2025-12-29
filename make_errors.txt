@@ -1,0 +1,7 @@
+    Checking rust_learning_course v0.1.0 (/home/goku/Documents/VUZ/Maga/VI_kurs/Rust-Training-Course)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.23s
+    Checking rust_learning_course v0.1.0 (/home/goku/Documents/VUZ/Maga/VI_kurs/Rust-Training-Course)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.33s
+   Compiling rust_learning_course v0.1.0 (/home/goku/Documents/VUZ/Maga/VI_kurs/Rust-Training-Course)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.76s
+     Running unittests src/main.rs (target/debug/deps/rust_learning_course-67f48afd2f1d9d42)

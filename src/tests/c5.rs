@@ -45,10 +45,3 @@ fn test_top_k_frequent() {
     assert_eq!(vec![3, 2], top_k_frequent(vec![3, 3, 3, 2, 2, 1], 2));
     assert_eq!(vec![4, 2, 1], top_k_frequent(vec![4, 4, 4, 4, 2, 2, 1], 9));
 }
-
-#[allow(dead_code)]
-fn main() {
-    println!("Starting test c5!");
-    test_second_largest();
-    println!("All c4 tests passed!");
-}
