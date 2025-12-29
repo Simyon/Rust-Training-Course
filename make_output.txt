@@ -1,0 +1,37 @@
+make format
+make[1]: Entering directory '/home/goku/Documents/VUZ/Maga/VI_kurs/Rust-Training-Course'
+make[1]: Leaving directory '/home/goku/Documents/VUZ/Maga/VI_kurs/Rust-Training-Course'
+make fix
+make[1]: Entering directory '/home/goku/Documents/VUZ/Maga/VI_kurs/Rust-Training-Course'
+make[1]: Leaving directory '/home/goku/Documents/VUZ/Maga/VI_kurs/Rust-Training-Course'
+make clippy
+make[1]: Entering directory '/home/goku/Documents/VUZ/Maga/VI_kurs/Rust-Training-Course'
+make[1]: Leaving directory '/home/goku/Documents/VUZ/Maga/VI_kurs/Rust-Training-Course'
+
+running 23 tests
+test tests::c1::test_factorial ... ok
+test tests::c1::test_simple_control_flow ... ok
+test tests::c1::test_find_biggest_number ... ok
+test tests::c1::test_square ... ok
+test tests::c3::test_append_and_return_length ... ok
+test tests::c1::test_clear ... ok
+test tests::c1::test_simple_mutability ... ok
+test tests::c3::test_hard_borrowing ... ok
+test tests::c1::test_simple_data_types ... ok
+test tests::c3::test_last_word ... ok
+test tests::c3::test_longest_owned ... ok
+test tests::c3::test_longest_word ... ok
+test tests::c3::test_print_length ... ok
+test tests::c3::test_simple_borrowing ... ok
+test tests::c3::test_string_ownership ... ok
+test tests::c4::test_bank_account ... ok
+test tests::c4::test_company ... ok
+test tests::c4::test_fizzbuzz ... ok
+test tests::c4::test_operation ... ok
+test tests::c4::test_point_struct ... ok
+test tests::c4::test_rectangle_struct ... ok
+test tests::c4::test_traffic_light ... ok
+test tests::c4::test_weird_length_measures ... ok
+
+test result: ok. 23 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
