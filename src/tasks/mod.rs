@@ -12,3 +12,5 @@ pub mod c6_error_handling_tests_docs;
 pub mod c7_generics_traits_lifetimes;
 #[cfg(feature = "c8_iterators_and_closures")]
 pub mod c8_iterators_and_closures;
+#[cfg(feature = "c9_smart_pointers")]
+pub mod c9_smart_pointers;
