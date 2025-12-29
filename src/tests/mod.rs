@@ -4,3 +4,5 @@ pub mod c1;
 pub mod c3;
 #[cfg(feature = "c4_structs_methods_enums_pattern_matching")]
 pub mod c4;
+#[cfg(feature = "c5_collections")]
+pub mod c5;

@@ -1,7 +1,7 @@
 #[cfg(test)]
-mod tasks;
+pub mod tasks;
 
 #[cfg(test)]
-mod tests;
+pub mod tests;
 
 fn main() {}
