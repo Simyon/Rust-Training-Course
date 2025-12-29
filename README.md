@@ -21,3 +21,6 @@ The absence of ternary operator has disappointed me. It's kind of unaestetic to 
 I've gotten clippy error so I've add #[allow(clippy::ptr_arg)] because as I understand the task it's necessary to use string exactly.
 
 Choose indexes for slicing aren't clear. 
+
+### c4_structs_methods_enums_pattern_matching.rs
+Use saturating_sub for implementation subtask 3.
