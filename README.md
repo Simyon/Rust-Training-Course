@@ -33,3 +33,8 @@ Using i32::MIN could'be crashed on testcase vec = [i32::MIN, 0] or vec = [i32::M
 c.to_lowercase().to_string() creates a lot of small strings 
 
 to_lowercase().next() could give any symbols but it works on tests so it's okay.
+
+### c6_error_handling_tests_docs.rs
+read_numbers_from_str return Err("Invalid number") if see first not i32.
+
+Use email.rsplit('@').next() because some domians contain any @.

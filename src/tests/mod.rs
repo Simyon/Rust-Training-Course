@@ -6,3 +6,5 @@ pub mod c3;
 pub mod c4;
 #[cfg(feature = "c5_collections")]
 pub mod c5;
+#[cfg(feature = "c6_error_handling_tests_docs")]
+pub mod c6;
