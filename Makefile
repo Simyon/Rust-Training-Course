@@ -26,7 +26,7 @@ TASKS_TO_ANALYZE += c9_smart_pointers
 # ---------------------
 TASKS_TO_ANALYZE += c10_concurrency
 # ---------------------
-# TASKS_TO_ANALYZE += c12_object_oriented_programming
+TASKS_TO_ANALYZE += c12_object_oriented_programming
 # ---------------------
 
 .PHONY: check_empty

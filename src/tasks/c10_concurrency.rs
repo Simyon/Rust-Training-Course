@@ -292,13 +292,13 @@ pub fn run_work_queue(tasks: Vec<i32>, number_of_workers: usize) -> Vec<(usize, 
         let tx = result_sender.clone();
         handles.push(thread::spawn(move || worker(id, rx, tx)));
     }
-    
+
     drop(result_sender);
 
     for task in tasks {
         task_sender.send(task).unwrap();
     }
-    drop(task_sender);  
+    drop(task_sender);
 
     let mut results = Vec::with_capacity(task_count);
     for _ in 0..task_count {
